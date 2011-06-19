@@ -8,9 +8,17 @@ import string
 def usage():
 	print '''
 		
-		python script to convert agilient CSV waveforms into useful 
+		Python script to convert Agilent CSV waveforms into useful 
 		CSV files for plotting with gnuplot, or matlibplot.
 		or whatever.
+		
+		csv formatted data is assumed, with the last column containing timestamp
+		information.
+		
+		this script normalizes the timebase column into microseconds.  Please 
+		see the chip1.csv and chip1_normalized.csv for an example of usage.
+		
+		SWITCHS
 		
 		-i, --input		input file
 		-o, --output	output file
@@ -90,7 +98,9 @@ def main():
 	# since we will be stripping it out of the columns themselves
 	num_columns = len(header)
 	if (verbose):
-		print "Number of columns in source CSV :" + num_columns
+		print "Number of columns in source CSV :" + str(num_columns)
+		if(ask_ok("Continue?") == False):
+			sys.exit(0)
 	header[num_columns-1]="Time (us)"
 	writer.writerow(header)
 	

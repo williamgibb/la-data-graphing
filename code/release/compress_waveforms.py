@@ -89,7 +89,9 @@ def main():
 	time_column	=	num_columns - 1
 
 	if (verbose):
-		print "Number of columns in source CSV :" + num_columns
+		print "Number of columns in source CSV :" + str(num_columns)
+		if(ask_ok("Continue?") == False):
+			sys.exit(0)
 	writer.writerow(header)
 
 	#	prep for loop - write out the first entry and record it as the 
@@ -110,17 +112,24 @@ def main():
 				break
 				
 		if(write_row):
-			print "writing row branch - last_time_written: " + str(last_time_written)
+#			print "writing row branch - last_time_written: " + str(last_time_written)
 			if(last_time_written != old_row[time_column]):
-				print "old_row time: " + str(old_row[time_column])
+				if(verbose):
+						print "old_row time: " + str(old_row[time_column])
 				writer.writerow(old_row)
 			writer.writerow(row)
 			last_time_written = row[time_column]
-			print "new last_time_written: " + str(last_time_written)
+			if (verbose):
+				print "new last_time_written: " + str(last_time_written)
 		old_row = row
 	
 	#write out the last row
 	writer.writerow(old_row)
+	print "Done compressing CSV file!"
+	ifile.close()
+	ofile.close()
+	sys.exit()
+
 
 if __name__ == "__main__":
     main()
