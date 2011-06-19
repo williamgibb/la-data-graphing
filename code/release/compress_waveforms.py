@@ -66,6 +66,8 @@ def main():
 		usage()
 		sys.exit(2)
 
+	skew_time = 0.0001
+
 	print "Welcome to the waveform compression tool"
 	print "You have specified the following input file:  " + input
 	print "You have specified the following output file: " + output
@@ -115,8 +117,11 @@ def main():
 #			print "writing row branch - last_time_written: " + str(last_time_written)
 			if(last_time_written != old_row[time_column]):
 				if(verbose):
-						print "old_row time: " + str(old_row[time_column])
+					print "old_row time: " + str(old_row[time_column])
 				writer.writerow(old_row)
+			skew_row = old_row
+			skew_row[time_column] = float(row[time_column]) - skew_time
+			writer.writerow(skew_row)
 			writer.writerow(row)
 			last_time_written = row[time_column]
 			if (verbose):
@@ -129,8 +134,7 @@ def main():
 	ifile.close()
 	ofile.close()
 	sys.exit()
-
-
+	
 if __name__ == "__main__":
     main()
 
