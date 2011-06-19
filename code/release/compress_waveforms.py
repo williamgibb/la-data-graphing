@@ -1,3 +1,11 @@
+#
+#	This script is Copyrighted (c) 2011 by William Gibb and 
+#	licensed under the OSI Educational Community License version 1.0
+#	
+#	Please see the LICENSE.txt file for a full reading of the appopriate
+#	license.
+#	
+
 import sys
 import csv
 import getopt
@@ -13,8 +21,11 @@ def usage():
 		represent the captured data.
 		
 		THIS TOOL IS DESIGNED TO WORK ON CSV FILES PROCCESSED WITH
-		normalize_waveforms.py
-				
+		normalize_waveforms.py.  Please see sample CSV files from the SVN tree
+		for examples of the data this script expects.
+		
+		SWITCHS
+		
 		-i, --input		input file
 		-o, --output	output file
 		-v				verbose
