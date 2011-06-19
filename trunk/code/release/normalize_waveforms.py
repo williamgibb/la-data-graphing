@@ -1,4 +1,10 @@
-
+#
+#	This script is Copyrighted (c) 2011 by William Gibb and 
+#	licensed under the OSI Educational Community License version 1.0
+#	
+#	Please see the LICENSE.txt file for a full reading of the appopriate
+#	license.
+#	
 
 import sys
 import csv
