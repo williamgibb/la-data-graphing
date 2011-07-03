@@ -2,12 +2,12 @@
 #	see chapter sixteen in the matplotlib docs!
 #
 
-
+import pylab
 import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 
-file_name = "test_compress3.csv"
+file_name = "test_compress.csv"
 fh = open(file_name, "r")
 r = mlab.csv2rec(fh)
 #numbers
@@ -43,6 +43,10 @@ ax1.plot(x, y1)
 ax2=plt.subplot(n,1,2, sharex=ax1)
 ax2.set_ylim(-0.1, 1.1)
 ax2.set_yticks([0,1])
+#the following command turns off the yaxis ticks!?!??
+#really, it turns off everything!
+# http://www.mail-archive.com/matplotlib-users@lists.sourceforge.net/msg15755.html
+ax2.yaxis.set_major_locator(pylab.NullLocator())
 ax2.text(sig_label_x, sig_label_y, sig2_label, va='top', 
 	transform=ax2.transAxes, fontsize=label_size)
 ax2.plot(x,y2)
