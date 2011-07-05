@@ -50,6 +50,11 @@ ax2.yaxis.set_major_locator(pylab.NullLocator())
 ax2.text(sig_label_x, sig_label_y, sig2_label, va='top', 
 	transform=ax2.transAxes, fontsize=label_size)
 ax2.plot(x,y2)
+#
+#http://matplotlib.sourceforge.net/faq/howto_faq.html
+#Move the edge of an axes to make room for tick labels
+# use this to control the vertical spacing
+plt.subplots_adjust(hspace=0)
 #title
 ax1.set_title('%s signals'%file_name)
 #graph
