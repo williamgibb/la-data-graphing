@@ -1,5 +1,5 @@
 #
-#    This script is Copyrighted (c) 2011 by William Gibb and 
+#    This script is Copyrighted (c) 2012 by William Gibb and 
 #    licensed under the OSI Educational Community License version 1.0
 #    
 #    Please see the LICENSE.txt file for a full reading of the appopriate
@@ -59,8 +59,8 @@ def main(options):
     if not options.verbose:
         logging.info('Disable verbose logging')
         logger.setLevel(logging.INFO)
+    
     timebase = None
-    verbose = False
     
     logger.debug('Welcome to the waveform normalization tool')
     logger.debug('You have specified the file "%s" to transform into a valid source data.' % input_fn)
@@ -79,7 +79,7 @@ def main(options):
     # Update the time field with the appropriate timebase information
     # since we will be stripping it out of the columns themselves
     num_columns = len(header)
-    if (verbose):
+    if options.verbose:
         logger.debug("Number of columns in source CSV: %d" % num_columns)
         if options.verbose:
             if not ask_ok("Continue?"):
@@ -172,7 +172,7 @@ def norm_opts():
         help='output file'))
     options.append(optparse.make_option('--zero_timescale', dest='zero', default=False, action='store_true',
         help='use the first entry as the offset from time zero. change all timestamps to reflect that offset as time zero.'))
-    options.append(optparse.make_option('--verbose', action='store_true',default=False, 
+    options.append(optparse.make_option('--verbose', dest='verbose', action='store_true',default=False, 
         help='Enable verbose output'))
     
     return options
@@ -185,6 +185,7 @@ if __name__ == "__main__":
     '''
     parser = optparse.OptionParser(option_list=norm_opts(),epilog=USAGE)
     (options,args) = parser.parse_args()
+    print options
     if not (options.input and options.output):
         logger.error('Must specify input and output files')
         logger.error('%s' % USAGE)
