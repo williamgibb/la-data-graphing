@@ -152,7 +152,7 @@ def write_changes(changes, ofile):
 def write_vcd_header(ofile,header_dict):
     '''
     write out the VCD header
-    this assumes a fixed timestacle of 1 microsecond
+    this assumes a fixed timescale of 1 microsecond
     '''
     version_string = 'normalize_to_vcd %d' % (__version__)
     date_format = '%Y-%m-%dT%H:%M:%SZ'
